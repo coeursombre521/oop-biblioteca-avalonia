@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PAOO.Main.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        Width="800" Height="500"
+        CanResize="False"
+        x:Class="PAOO.Main.Views.LogWindow"
+        x:DataType="vm:LogWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding LogWindowTitle}">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:LogWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="{Binding LogWindowHeader}"
+                   FontSize="30"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,48"/>
+        <StackPanel Width="600">
+            <TextBox Text="{Binding SearchTerm}" />
+            <DataGrid ItemsSource="{Binding FilteredLog}"
+                      SelectedItem="{Binding SelectedItem}"
+                      AutoGenerateColumns="False"
+                      Height="250"
+                      Margin="0,0,0,20">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding LogTypeColumn}" Binding="{Binding Type}" />
+                    <DataGridTextColumn Header="{Binding LogMessageColumn}" Binding="{Binding Message}" />
+                    <DataGridTextColumn Header="{Binding LogTimestampColumn}" Binding="{Binding Timestamp}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Command="{Binding ClearLogCommand}"
+                    Content="{Binding LogClearLogButton}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Margin="10"/>
+        </StackPanel>
+    </StackPanel>
+
+</Window>

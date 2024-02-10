@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PAOO.Main.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        Width="800" Height="500"
+        CanResize="False"
+        x:Class="PAOO.Main.Views.AddItemWindow"
+        x:DataType="vm:AddItemWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding AddItemWindowTitle}">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:AddItemWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TabControl Width="750" Height="470">
+            <TabItem Header="{Binding AddItemCarteTab}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding AddCarteWindowHeader}"
+                            FontSize="30"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,48"/>
+                    <StackPanel Width="400">
+                        <TextBox Name="TitluCarte" Text="{Binding TitluCarte}" Watermark="{Binding AddItemTitluTextBox}" Margin="0,0,0,10"/>
+                        <TextBox Name="Autor" Text="{Binding Autor}" Watermark="{Binding AddItemAutorTextBox}" Margin="0,0,0,20"/>
+                        <Button Command="{Binding SubmitCommandCarte}"
+                                Content="{Binding AddCarteSubmitButton}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{Binding AddItemRevistaTab}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding AddRevistaWindowHeader}"
+                            FontSize="30"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,48"/>
+                    <StackPanel Width="400">
+                        <TextBox Name="TitluRevista" Text="{Binding TitluRevista}" Watermark="{Binding AddItemTitluTextBox}" Margin="0,0,0,20"/>
+                        <Button Command="{Binding SubmitCommandRevista}"
+                                Content="{Binding AddRevistaSubmitButton}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+
+</Window>
